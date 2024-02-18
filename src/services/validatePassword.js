@@ -4,17 +4,18 @@ export const validatePassword = async (req, res) => {
   try {
     const { password } = req.body;
     if (!password) {
-      return res.sendStatus(400);
+      return res.status(400).json({ error: "Password is required." });
     }
 
-    const result = isValidPassword(password);
+    const errors = isValidPassword(password);
 
-    if (!result) {
-      return res.sendStatus(400);
+    if (errors) {
+      return res.status(400).json({ messsage: errors });
     }
 
     return res.sendStatus(200);
   } catch (err) {
+    console.error(err);
     return res.sendStatus(500);
   }
 };

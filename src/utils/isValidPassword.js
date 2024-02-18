@@ -1,11 +1,23 @@
 export const isValidPassword = (password) => {
-  return (
-    hasMinLength(password) &&
-    hasUpperCase(password) &&
-    hasLowerCase(password) &&
-    hasDigit(password) &&
-    hasSpecialCharacter(password)
-  );
+  if (!hasMinLength(password)) {
+    return "Password must have at least 8 characters.";
+  }
+
+  if (!hasUpperCase(password)) {
+    return "Password must have at least one uppercase letter.";
+  }
+
+  if (!hasLowerCase(password)) {
+    return "Password must have at least one lowercase letter.";
+  }
+
+  if (!hasDigit(password)) {
+    return "Password must have at least one digit.";
+  }
+
+  if (!hasSpecialCharacter(password)) {
+    return "Password must have at least one special character.";
+  }
 };
 
 function hasMinLength(password) {
